@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+*.log
+.env
+*.env
+GDM*.env
+data-gym-cache/
+LightRAG_Data/
+tmp/
+gfm-rag/data/hipporag_stage1_exports/
+HippoRAG/outputs/
+LightRAG/outputs/
+gfm-rag/outputs/

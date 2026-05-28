@@ -1,0 +1,14 @@
+outputs
+*.pyc
+data/*/processed/stage2/
+.vscode
+checkpoints/
+tmp
+.env
+saved_models/
+data_full
+logs/
+*.ipynb
+dist/*
+site/
+.DS_Store

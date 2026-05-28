@@ -1,0 +1,9 @@
+_target_: gfmrag.evaluation.hotpot_qa_evaluator.HotpotQAEvaluator
+enable_llm_answer_judge: False
+answer_judge_model: deepseek-v4-pro
+answer_judge_base_url: https://api.deepseek.com
+answer_judge_api_key_env: DEEPSEEK_API_KEY
+answer_judge_max_workers: 100
+answer_judge_max_tokens: 5128
+answer_judge_max_retries: 3
+answer_judge_retry_sleep: 2.0

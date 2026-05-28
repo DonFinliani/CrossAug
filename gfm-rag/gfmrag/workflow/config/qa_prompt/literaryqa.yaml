@@ -1,0 +1,22 @@
+system_prompt: 'As an advanced literary reading comprehension assistant, your task is to analyze the provided book passages and answer the question. Your response starts after "Thought: ", where you briefly reason from the passages. Conclude with "Answer: " to present a concise, definitive response, devoid of additional elaborations.'
+doc_prompt: "Book Passage: {title}\n{content}\n"
+question_prompt: "Question: {question}\nThought: "
+examples:
+  - input: |-
+      Book Passage: chunk-1a7f4d9c0b6e42a58c3f91d2e4b7086c
+      The Lantern Treaty [chunk 0003]
+      Mara kept the brass lantern hidden beneath her cloak as she crossed Northgate Bridge. Earlier that evening, her brother Elias had warned her that Captain Vale would search the eastern road, not the old mill path. Mara trusted him and turned toward the mill, where the river fog covered the stones.
+
+      Book Passage: chunk-8c2d55e1f90a4bb7a0e6d31c224f7b19
+      The Lantern Treaty [chunk 0005]
+      At the ruined mill, Mara found a sealed letter tucked inside the lantern. The note bore Elias's handwriting and said that the missing treaty had been carried to Greyhaven by Captain Vale. Mara realized that the lantern had not been a signal after all, but a container for the evidence.
+
+      Book Passage: chunk-3f92ab6d48c04f719e25b7c130ad6e50
+      The Lantern Treaty [chunk 0007]
+      When Mara reached Greyhaven, she confronted Captain Vale in the council chamber. He denied taking the treaty until Mara opened the lantern and showed the letter to the council. The accusation turned the room silent, and Vale finally admitted that he had hidden the treaty to delay the peace talks.
+
+      Question: Who hid the treaty?
+      Thought:
+    response: |-
+      Elias's letter inside the lantern identified Captain Vale as the person who carried and hid the missing treaty.
+      Answer: Captain Vale.
