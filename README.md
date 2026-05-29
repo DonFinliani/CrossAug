@@ -2,9 +2,9 @@
 
 CrossAug contains the main experiment code for three RAG frameworks:
 
-- `HippoRAG2/`: HippoRAG2 with GNN-based hidden-triplet subgraph completion.
-- `LightRAG/`: LightRAG with the same GNN completion idea adapted to LightRAG graphs.
-- `gfm-rag/`: GFM-RAG QA over graphs converted from HippoRAG2 base/GNN outputs.
+- `HippoRAG2/`: HippoRAG2 with CrossAug-based hidden-triplet subgraph completion.
+- `LightRAG/`: LightRAG with CrossAug-based hidden-triplet subgraph completion.
+- `gfm-rag/`: GFM-RAG QA over graphs converted from HippoRAG2 base/CrossAug graphs.
 
 The three frameworks should be reproduced in three separate virtual environments. This avoids dependency conflicts between HippoRAG2, LightRAG, and GFM-RAG. Each framework directory includes a `requirements.txt` exported from the corresponding local conda environment that successfully ran the main experiments; use that file as the primary Python dependency lock for reproduction.
 
@@ -12,13 +12,12 @@ The three frameworks should be reproduced in three separate virtual environments
 
 ```text
 CrossAug/
-  artifacts/                 # compressed cache artifacts
+  artifacts/                 # compressed cache artifacts with LFS
   HippoRAG2/                  # HippoRAG2 main experiment code
   LightRAG/                  # LightRAG main experiment code
   gfm-rag/                   # GFM-RAG main experiment code
 ```
 
-Auxiliary analysis, ablation, sweep, random-selection, demo, WebUI, and deployment files are intentionally omitted from the cleaned repository. The repository keeps only the main experiment paths and the cache needed for fast reproduction.
 
 ## Common Runtime Settings
 
@@ -36,7 +35,7 @@ export OPENAI_API_KEY=not_needed
 
 ## Cache Restore
 
-The repository ships the HippoRAG2 cache as:
+The repository ships the HippoRAG2 cache with LFS as:
 
 ```text
 artifacts/hipporag_outputs_cache.tar.zst
@@ -70,7 +69,7 @@ pip install -r requirements.txt
 pip install -e . --no-deps
 ```
 
-Run LiteraryQA base and GNN flows over the first 50 books:
+Run LiteraryQA base and CrossAug flows over the first 50 books:
 
 ```bash
 python main.py \
@@ -124,7 +123,7 @@ HippoRAG2 outputs are written under:
 HippoRAG2/outputs/<dataset>/
 ```
 
-The GNN reproduction profile is recorded in result metadata as `hidden_triplet_reproduction_profile`.
+The CrossAug reproduction profile is recorded in result metadata as `hidden_triplet_reproduction_profile`.
 
 ## 2. LightRAG Environment
 
@@ -179,7 +178,7 @@ LightRAG/outputs/lightrag_literaryqa_gnn/
 LightRAG/outputs/lightrag_multihopqa_gnn/
 ```
 
-The GNN reproduction profile is recorded in the GNN artifact metadata as `reproduction_profile`.
+The CrossAug reproduction profile is recorded in the CrossAug artifact metadata as `reproduction_profile`.
 
 ## 3. GFM-RAG Environment
 
@@ -215,13 +214,13 @@ export DATA_ROOT=data/hipporag_stage1_exports
 bash scripts/base_gnn.bash
 ```
 
-GFM-RAG reads converted HippoRAG2 base/GNN stage1 data and writes its own stage2/stage3 outputs under the GFM-RAG working directories.
+GFM-RAG reads converted HippoRAG2 base/CrossAug stage1 data and writes its own stage2/stage3 outputs under the GFM-RAG working directories.
 
 ## Reproduction Notes
 
 - The `requirements.txt` files are generated from working local conda environments, so they should reproduce the Python package side of the setup more reliably than reinstalling from broad package specs. They still cannot fully lock external conditions such as CUDA driver compatibility, system libraries, GPU availability, or whether the LLM/embedding endpoints are reachable.
 - If a frozen requirement line uses a machine-local `file:///...` build path and fails on another machine, replace that line with the same package/version from PyPI or conda before rerunning `pip install -r requirements.txt`.
 - For cached HippoRAG2 reproduction, keep `force_index_from_scratch=false` and `force_openie_from_scratch=false`, which are the defaults.
-- Changing any of the four exposed GNN parameters intentionally changes the GNN run configuration and may trigger new hidden-triplet mining outputs.
+- Changing any of the four exposed CrossAug parameters intentionally changes the CrossAug run configuration and may trigger new hidden-triplet mining outputs.
 - LiteraryQA main results in the paper use the first 50 books; use `--literaryqa_book_limit 50` or `--book_limit 50` accordingly.
 - If your endpoint enforces lower concurrency, reduce HippoRAG2 `--llm_concurrency`, LightRAG `--query_concurrency`, or GFM-RAG `N_THREAD`.

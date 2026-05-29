@@ -1,19 +1,19 @@
 # Cache Artifacts
 
-This directory contains compressed cache artifacts that are small enough to ship with the repository.
+This directory contains compressed cache artifacts with LFS
 
-## HippoRAG
+## HippoRAG2
 
-- `hipporag_outputs_cache.tar.zst`: compressed `HippoRAG/outputs` cache for the main experiments.
+- `hipporag_outputs_cache.tar.zst`: compressed `HippoRAG2/outputs` cache for the main experiments.
 - The archive intentionally excludes answer-judge caches because the paper experiments do not require LLM-as-Judge metrics.
 
 Restore it from the repository root:
 
 ```bash
-tar --zstd -xf artifacts/hipporag_outputs_cache.tar.zst -C HippoRAG
+tar --zstd -xf artifacts/hipporag_outputs_cache.tar.zst -C HippoRAG2
 ```
 
-After extraction, `HippoRAG/outputs` will be available for cache reuse.
+After extraction, `HippoRAG2/outputs` will be available for cache reuse.
 
 ## LightRAG
 
