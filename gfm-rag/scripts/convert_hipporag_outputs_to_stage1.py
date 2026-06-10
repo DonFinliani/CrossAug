@@ -43,10 +43,10 @@ DEFAULT_MODEL_LABEL = "Models_Qwen3-32B"
 DEFAULT_MODEL_DIR_GLOB = "Models_Qwen3-32B*"
 
 DATASETS: dict[str, str] = {
-    "literaryqa": "literaryqa_bestbackup",
-    "musique": "musique_bestbackup",
-    "hotpotqa": "hotpotqa_bestbackup",
-    "2wikimultihopqa": "2wikimultihopqa_bestbackup",
+    "literaryqa": "literaryqa",
+    "musique": "musique",
+    "hotpotqa": "hotpotqa",
+    "2wikimultihopqa": "2wikimultihopqa",
 }
 
 
